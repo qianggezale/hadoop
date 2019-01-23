@@ -1,0 +1,8 @@
+com\bigdata\job\ParseDataJob$LogMapper.class
+com\bigdata\job\ParseLogJob$LogWritable.class
+com\bigdata\mr\LogFieldWritable.class
+com\bigdata\job\ParseLogJob$LogReducer.class
+com\bigdata\job\ParseDataJob.class
+com\bigdata\job\ParseLogJob$LogMapper.class
+com\bigdata\mr\LogGenericWritable.class
+com\bigdata\job\ParseLogJob.class
