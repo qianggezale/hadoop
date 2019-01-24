@@ -8,17 +8,20 @@
     <artifactId>mymapreduce</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
+        <!--Hadoop对应类库-->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
             <version>2.7.6</version>
             <scope>provided</scope>
         </dependency>
+        <!--JSON格式化-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.4</version>
         </dependency>
+        <!--输出文件的压缩模式-->
         <dependency>
             <groupId>org.anarres.lzo</groupId>
             <artifactId>lzo-hadoop</artifactId>

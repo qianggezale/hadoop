@@ -4,8 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.bigdata.mr.LogFieldWritable;
 import com.bigdata.mr.LogGenericWritable;
-import org.anarres.lzo.hadoop.codec.LzoCodec;
-import org.anarres.lzo.hadoop.codec.LzopCodec;
+import com.bigdata.utils.IPUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
@@ -23,6 +22,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 import java.io.IOException;
+import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
@@ -66,18 +66,45 @@ public class ParseLogJob extends Configured implements Tool {
     }
 
     public static class LogReducer extends Reducer<LongWritable, LogGenericWritable, NullWritable, Text> {
+
+        public void setup(Context context) throws IOException {
+//            //如果job中已经添加了分布式缓存此处代码不需要拷贝文件到本地了
+//            FileSystem fs = FileSystem.get(context.getConfiguration());
+//            Path IpPath = new Path(context.getConfiguration().get("ip.file.path"));
+//            Path localPath = new Path(this.getClass().getResource("/").getPath());
+//            fs.copyToLocalFile(IpPath, localPath);
+            IPUtil.load(context.getConfiguration().get("db.filename"));
+        }
+
         @Override
         protected void reduce(LongWritable key, Iterable<LogGenericWritable> values, Context context) throws IOException, InterruptedException {
 
             for (LogGenericWritable v : values) {
-                context.write(null, new Text(v.asJsonString()));
+                String ip = v.getObject("ip").toString();
+                String[] adds = IPUtil.find(ip);
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("guojia", adds[0]);
+                jsonObject.put("sheng", adds[1]);
+                jsonObject.put("chengshi", adds[2]);
+
+                JSONObject vo = JSON.parseObject(v.asJsonString());
+                vo.put("address", jsonObject.toJSONString());
+
+                context.write(null, new Text(vo.toJSONString()));
             }
+        }
+
+        public void cleanup(Context context) {
+
         }
     }
 
     public int run(String[] args) throws Exception {
+        //获取系统配置文件
         Configuration conf = getConf();
-
+        //加载自定义配置文件
+        conf.addResource("mr.xml");
+        //创建JOB
         Job job = Job.getInstance(conf);
         job.setJarByClass(ParseLogJob.class);
         job.setJobName("ParseLogJob");
@@ -86,9 +113,11 @@ public class ParseLogJob extends Configured implements Tool {
         job.setMapOutputKeyClass(LongWritable.class);
         job.setMapOutputValueClass(LogWritable.class);
         job.setOutputValueClass(Text.class);
+        //文件放到分布式缓存中
+        job.addCacheFile(new URI(conf.get("ip.file.path")));
 
-        FileInputFormat.addInputPath(job, new Path(args[0]));
-        Path outpath = new Path(args[1]);
+        FileInputFormat.addInputPath(job, new Path(conf.get("job.inputpath")));
+        Path outpath = new Path(conf.get("job.outputpath"));
         FileOutputFormat.setOutputPath(job, outpath);
 //        //输出Lzop压缩
 //        FileOutputFormat.setCompressOutput(job,true);
@@ -106,7 +135,8 @@ public class ParseLogJob extends Configured implements Tool {
 
     public static void main(String[] args) throws Exception {
         System.out.println("开始执行");
-        int reint = ToolRunner.run(new Configuration(), new ParseLogJob(), args);
+        Configuration conf = new Configuration();
+        int reint = ToolRunner.run(conf, new ParseLogJob(), args);
         System.exit(reint);
     }
 

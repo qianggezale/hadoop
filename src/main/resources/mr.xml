@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>ip.file.path</name>
+        <value>hdfs://bigdata0:34452/user/17monipdb.dat</value>
+    </property>
+    <property>
+        <name>db.filename</name>
+        <value>17monipdb.dat</value>
+    </property>
+    <property>
+        <name>job.inputpath</name>
+        <value>hdfs://bigdata0:34452/tmp/input/testdata.txt</value>
+    </property>
+    <property>
+        <name>job.outputpath</name>
+        <value>hdfs://bigdata0:34452/tmp/output/</value>
+    </property>
+</configuration>
