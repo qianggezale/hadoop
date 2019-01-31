@@ -3,7 +3,7 @@
 <configuration>
     <property>
         <name>ip.file.path</name>
-        <value>hdfs://bigdata0:34452/user/17monipdb.dat</value>
+        <value>hdfs://bigdata0:34452/user/1138609761/17monipdb.dat</value>
     </property>
     <property>
         <name>db.filename</name>
@@ -11,7 +11,7 @@
     </property>
     <property>
         <name>job.inputpath</name>
-        <value>hdfs://bigdata0:34452/tmp/input/testdata.txt</value>
+        <value>hdfs://bigdata0:34452/tmp/input/log0605.txt</value>
     </property>
     <property>
         <name>job.outputpath</name>

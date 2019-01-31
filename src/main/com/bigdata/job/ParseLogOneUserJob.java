@@ -1,6 +1,7 @@
 package com.bigdata.job;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bigdata.mr.LogFieldWritable;
 import com.bigdata.mr.LogGenericWritable;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ParseLogJob extends Configured implements Tool {
+public class ParseLogOneUserJob extends Configured implements Tool {
 
     public static class LogWritable extends LogGenericWritable {
         public String[] getFields() {
@@ -57,65 +58,40 @@ public class ParseLogJob extends Configured implements Tool {
         return lw;
     }
 
-    public static class LogMapper extends Mapper<LongWritable, Text, LongWritable, LogGenericWritable> {
+    public static class LogMapper extends Mapper<LongWritable, Text, Text, LogGenericWritable> {
 
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            //解析错误计数
-            Counter errorCounter = context.getCounter("Log error", "Parse error");
             //解析正确计数
             Counter successCounter = context.getCounter("Log success", "Parse success");
             try {
-                LogGenericWritable logs = parseLog(value.toString());
-//                //用userid为key判断每个key的个数
-//                if (logs.getObject("user_id") == null) {
-//                    context.write(new LongWritable(0), logs);
-//                } else {
-//                    long userid = (long) logs.getObject("user_id");
-//                    context.write(new LongWritable(userid), logs);
-//                }
-                context.write(key, logs);
+                LogGenericWritable json_log = parseLog(value.toString());
+                String user_id = (String) json_log.getObject("user_id");
+                //用userid为key判断每个key的个数
+                if (user_id != null) {
+                    context.write(new Text(user_id), json_log);
+                }
                 successCounter.increment(1);
             } catch (Exception e) {
-                errorCounter.increment(1);
-                LogGenericWritable v = new LogWritable();
-                v.put("error_flag", new LogFieldWritable("error"));
-                v.put("error_log", new LogFieldWritable(value));
-//                int outkey=(int)(Math.random()*100);
-//                outkey.set
-                context.write(key, v);
+                e.printStackTrace();
             }
         }
     }
 
-    public static class LogReducer extends Reducer<LongWritable, LogGenericWritable, Text, Text> {
+    public static class LogReducer extends Reducer<Text, LogGenericWritable, Text, Text> {
 
         public void setup(Context context) throws IOException {
-//            //如果job中已经添加了分布式缓存此处代码不需要拷贝文件到本地了
-//            FileSystem fs = FileSystem.get(context.getConfiguration());
-//            Path IpPath = new Path(context.getConfiguration().get("ip.file.path"));
-//            Path localPath = new Path(this.getClass().getResource("/").getPath());
-//            fs.copyToLocalFile(IpPath, localPath);
-//            IPUtil.load(context.getConfiguration().get("db.filename"));
-            IPUtil.load("17monipdb.dat");
+
         }
 
-        protected void reduce(LongWritable key, Iterable<LogGenericWritable> values, Context context) throws IOException, InterruptedException {
+        protected void reduce(Text key, Iterable<LogGenericWritable> values, Context context) throws IOException, InterruptedException {
             Counter OneUserCounter = context.getCounter("Log success", "OneUserCount");
-            OneUserCounter.increment(1);
+            int size = 0;
             for (LogGenericWritable v : values) {
-                JSONObject vo = JSON.parseObject(v.asJsonString());
-                if (v.getObject("error_flag") == null) {
-                    String ip = (String) v.getObject("ip");
-                    JSONObject jsonObject = new JSONObject();
-                    String[] adds = IPUtil.find(ip);
-                    jsonObject.put("guojia", adds[0]);
-                    jsonObject.put("sheng", adds[1]);
-                    jsonObject.put("chengshi", adds[2]);
-                    vo.put("address", jsonObject.toJSONString());
-                }
-                String keyout = v.getObject("error_flag") == null ? "part" : "error/part";
-                context.write(new Text(keyout), new Text(vo.toJSONString()));
+                size = size + 1;
             }
+            OneUserCounter.increment(1);
+            context.write(null, new Text("用户ID：" + key + "个数为：" + size));
+
         }
 
         public void cleanup(Context context) {
@@ -130,11 +106,11 @@ public class ParseLogJob extends Configured implements Tool {
         conf.addResource("mr.xml");
         //创建JOB
         Job job = Job.getInstance(conf);
-        job.setJarByClass(ParseLogJob.class);
-        job.setJobName("ParseLogJob");
-        job.setMapperClass(ParseLogJob.LogMapper.class);
-        job.setReducerClass(ParseLogJob.LogReducer.class);
-        job.setMapOutputKeyClass(LongWritable.class);
+        job.setJarByClass(ParseLogOneUserJob.class);
+        job.setJobName("ParseLogOneUserJob");
+        job.setMapperClass(ParseLogOneUserJob.LogMapper.class);
+        job.setReducerClass(ParseLogOneUserJob.LogReducer.class);
+        job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(LogWritable.class);
         job.setOutputValueClass(Text.class);
         //文件放到分布式缓存中
@@ -142,7 +118,7 @@ public class ParseLogJob extends Configured implements Tool {
 //        //设置多个小文件在一个map中
 //        job.setInputFormatClass(CombineTextInputFormat.class);
 
-        job.setOutputFormatClass(LogOutputFormat.class);
+//        job.setOutputFormatClass(LogOutputFormat.class);
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         Path outpath = new Path(args[1]);
@@ -164,7 +140,7 @@ public class ParseLogJob extends Configured implements Tool {
     public static void main(String[] args) throws Exception {
         System.out.println("开始执行");
         Configuration conf = new Configuration();
-        int reint = ToolRunner.run(conf, new ParseLogJob(), args);
+        int reint = ToolRunner.run(conf, new ParseLogOneUserJob(), args);
         System.exit(reint);
     }
 
