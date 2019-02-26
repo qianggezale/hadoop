@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13f91863-e9ab-4a15-b6df-c9c53c1b7640" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogCompareJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogOneUserJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/bigdata/mr/LogOutputFormat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/bigdata/mr/TextLongGroupComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/bigdata/mr/TextLongPartitioner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/bigdata/mr/TextLongWritable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/com/bigdata/job/HiveParseJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mr.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -42,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogOneUserJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="141" column="21" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="21" />
+            <state relative-caret-position="-336">
+              <caret line="92" column="73" selection-start-line="87" selection-start-column="12" selection-end-line="92" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,8 +48,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogJob.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-173">
+              <caret line="48" column="24" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="class#LogReducer#0;class#ParseLogJob#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/HiveParseJob.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="179">
-              <caret line="102" column="87" selection-start-line="102" selection-start-column="87" selection-end-line="102" selection-end-column="87" />
+              <caret line="65" column="80" lean-forward="true" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogCompareJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="134" selection-start-line="134" selection-end-line="135" selection-end-column="41" />
+            <state relative-caret-position="353">
+              <caret line="88" column="67" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mr.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="13" column="66" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
+            <state relative-caret-position="263">
+              <caret line="18" column="55" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -90,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseDataJob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-217">
-              <caret line="50" column="33" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="33" />
+            <state relative-caret-position="500">
+              <caret line="48" column="23" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,6 +124,7 @@
       <find>LongWritable</find>
       <find>LogOutputFormat</find>
       <find>getFileBaseName</find>
+      <find>ip.file.path</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,13 +147,14 @@
         <option value="$PROJECT_DIR$/src/main/com/bigdata/utils/IPUtil.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/com/bigdata/mr/LogOutputFormat.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mr.xml" />
         <option value="$PROJECT_DIR$/src/main/com/bigdata/mr/TextLongPartitioner.java" />
         <option value="$PROJECT_DIR$/src/main/com/bigdata/mr/TextLongGroupComparator.java" />
         <option value="$PROJECT_DIR$/src/main/com/bigdata/mr/TextLongWritable.java" />
         <option value="$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogCompareJob.java" />
         <option value="$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogOneUserJob.java" />
         <option value="$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogJob.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mr.xml" />
+        <option value="$PROJECT_DIR$/src/main/com/bigdata/job/HiveParseJob.java" />
       </list>
     </option>
   </component>
@@ -195,7 +201,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,13 +261,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548904428235" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551178141288" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -307,11 +313,13 @@
       <workItem from="1548808410961" duration="5612000" />
       <workItem from="1548814156591" duration="103000" />
       <workItem from="1548814625763" duration="32758000" />
+      <workItem from="1549007422676" duration="265000" />
+      <workItem from="1551171739364" duration="4361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79574000" />
+    <option name="totallyTimeSpent" value="84200000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -331,9 +339,8 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.500956" side_tool="true" weight="0.21401028" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.49904397" visible="true" weight="0.1992288" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.49904397" visible="true" weight="0.20437019" />
       <window_info id="Structure" order="6" sideWeight="0.500956" side_tool="true" weight="0.21401028" />
-      <window_info anchor="bottom" id="Duplicate detector" weight="0.3286908" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="2" weight="0.1821975" />
@@ -343,17 +350,18 @@
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.34958217" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.32729805" />
-      <window_info anchor="bottom" id="Run" order="9" weight="0.33008358" />
+      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.33008358" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="13" weight="0.32962447" />
+      <window_info anchor="bottom" id="Duplicate detector" order="14" weight="0.3286908" />
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Database" order="2" weight="0.32969153" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" visible="true" weight="0.14717224" />
+      <window_info active="true" anchor="right" id="Maven" order="5" visible="true" weight="0.14717224" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
@@ -624,37 +632,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseDataJob.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-217">
-          <caret line="50" column="33" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="33" />
+        <state relative-caret-position="-173">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#LogReducer#0;class#ParseLogJob#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogCompareJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="134" selection-start-line="134" selection-end-line="135" selection-end-column="41" />
+        <state relative-caret-position="353">
+          <caret line="88" column="67" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mr.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseDataJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="66" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogJob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="102" column="87" selection-start-line="102" selection-start-column="87" selection-end-line="102" selection-end-column="87" />
+        <state relative-caret-position="500">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -663,8 +665,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/ParseLogOneUserJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="141" column="21" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="21" />
+        <state relative-caret-position="-336">
+          <caret line="92" column="73" selection-start-line="87" selection-start-column="12" selection-end-line="92" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mr.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="18" column="55" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/bigdata/job/HiveParseJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="65" column="80" lean-forward="true" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

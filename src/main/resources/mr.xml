@@ -11,10 +11,11 @@
     </property>
     <property>
         <name>job.inputpath</name>
-        <value>hdfs://bigdata0:34452/tmp/input/log0605.txt</value>
+        <!--<value>hdfs://bigdata0:34452/tmp/input/log0605.txt</value>-->
+        <value>hdfs://bigdata0:34452/user/hadoop/weblog/</value>
     </property>
     <property>
         <name>job.outputpath</name>
-        <value>hdfs://bigdata0:34452/tmp/output/</value>
+        <value>hdfs://bigdata0:34452/user/hadoop/output/</value>
     </property>
 </configuration>
